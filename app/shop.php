@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class shop extends Model
+class Shop extends Model
 {
     protected $guarded = array('id');
     
@@ -12,6 +12,7 @@ class shop extends Model
         'name' => 'required',
         'url' => 'required',
         'genre' => 'required',
+        'image' => 'nullable',
         'latitude' => 'required',
         'longitube' => 'required',
         );
