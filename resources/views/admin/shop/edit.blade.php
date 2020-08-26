@@ -16,6 +16,7 @@
                 <div class="col-md-8 mx-auto">
                     <h2>お店の編集</h2>
                     <form action="{{ action('Admin\Shopscontroller@update') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         @if (count($errors) > 0 )
                         <ul>
                             @foreach($errors->all() as $e)

@@ -20,16 +20,27 @@ class Shopscontroller extends Controller
         $shop->fill($validated);
         $shop->save();
         
-        return redirect('admin/shop/create');
+        return redirect('admin');
     }
     
-    public function index() 
+    public function index(Request $request) 
     {
+        
+        // $genre = $request->input('genre');
+        // $posts = Shop::where("genre", $genre)->get();
+        
         $posts = Shop::all()->sortByDesc('update_at');
         $genres_all = Shop::distinct()->pluck('genre');
         
         
         return view('admin.shop.front', ['posts' => $posts, 'genres_all' => $genres_all]);
+    }
+    
+    public function genre(Request $request)
+    {
+        
+        return redirect('admin');
+        
     }
     public function delete(Request $request)
     {
@@ -72,4 +83,5 @@ class Shopscontroller extends Controller
         $shop->fill($shop_form)->save($shop_form);
         return redirect('admin/');
     }
+    
 }

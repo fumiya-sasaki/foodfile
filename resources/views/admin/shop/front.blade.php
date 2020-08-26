@@ -27,10 +27,14 @@
                     <li class="active"><a href="#">ジャンルリスト</a></li>
                    @foreach($genres_all as $genre)
                     <div class="genre">
-                        <li>{{ str_limit($genre, 50) }}</li>
+                        <li>
+                            <form method="POST" action="admin/shop/genre{{ $genre }}">
+                                {{ csrf_field() }}
+                                <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn-primary btn-sm">
+                            </form>
+                       </li>
                     </div>
                     @endforeach
-
                 </ul>
             </div>
                     <div class="posts col-md-9 mx-auto mt-3">
@@ -40,28 +44,27 @@
                             <div class="card border-primary mb-3" style="max-width: 18rem;">
                                 <div class="container-fluid">
                             <div class="row">
-                                
-                                <div class="text col-md-6">
-                                    <div class="date">
-                                        {{ $post->updated_at->format('Y年m月d日') }}
-                                    </div>
+                                <div class="text col-md-10">
                                     <div class="name">
                                         {{ str_limit($post->name, 50) }}
                                     </div>
                                     <div class="url">
-                                        {{ str_limit($post->url, 100) }}
+                                        <a href="{{ str_limit($post->url, 100) }}">詳細</a>
+                                    </div>
+                                     <div class="genre">
+                                        {{ str_limit($post->genre, 100) }}
                                     </div>
                                 </div>
+                                     <div>
+                                    <form method="GET" action="admin/shop/edit/{{ $post->id }}">    
+                                    {{ csrf_field() }}
+                                    <input type="submit" value="編集" class="btn btn-primary btn-sm">
+                                    </form>
+                                    </div>
                                     <div>
                                     <form method="POST" action="admin/shop/delete/{{ $post->id }}">    
                                     {{ csrf_field() }}
                                     <input type="submit" value="削除" class="btn btn-danger btn-sm">
-                                    </form>
-                                    </div>
-                                     <div>
-                                    <form method="GET" action="admin/shop/edit/{{ $post->id }}">    
-                                    {{ csrf_field() }}
-                                    <input type="submit" value="編集" class="btn btn-danger btn-sm">
                                     </form>
                                     </div>
                                 </div>
