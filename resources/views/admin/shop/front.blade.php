@@ -18,6 +18,22 @@
       
     </style>
     <body>
+        <header>
+            <div class="dropdown">
+              <button type="button" id="dropdown1"
+                      class="btn btn-secondary dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false">
+                      Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdown1">
+                    <a class="dropdown-item" href="#">Menu #1</a>
+                    <a class="dropdown-item" href="#">Menu #2</a>
+                    <a class="dropdown-item" href="#">Menu #3</a>
+              </div>
+            </div>
+        </header>
         <div class="container">
             <h2>アナタのリスト</h2>
             <hr color="#c0c0c0">
