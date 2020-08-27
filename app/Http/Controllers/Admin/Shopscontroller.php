@@ -62,4 +62,42 @@ class Shopscontroller extends Controller
         return redirect('admin/');
     }
     
+    public function test()
+{
+    return view('admin.shop.test');
+}
+public function api(Request $request)
+{
+    $html = file_get_contents( $request->query('url')); //取得するページの URL
+    // OGPパース（タイトル）
+    if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:title"\s*.*?)>/si', $html, $m)) {
+        $param = $m[1];
+        if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
+            $title = $m[1];
+        }
+    } else {
+        // OGPが無いときは、titleタグから取得
+        if (preg_match('/.*<title\s*.*>\s*(.*)\s*<\/title>.*/si', $html, $m)) {
+            $title = $m[1];
+        }
+    }
+    if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:image"\s*.*?)>/si', $html, $m)) {
+        $param = $m[1];
+        if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
+            $image = $m[1];
+        }
+    }
+    if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:url"\s*.*?)>/si', $html, $m)) {
+        $param = $m[1];
+        if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
+            $url = $m[1];
+        }
+    }
+    return [
+        'title' => $title,
+        'image' => $image,
+        'url'   => $url
+    ];
+}
+    
 }
