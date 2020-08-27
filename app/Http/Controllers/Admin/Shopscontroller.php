@@ -25,44 +25,22 @@ class Shopscontroller extends Controller
     
     public function index(Request $request) 
     {
-        
-        // $genre = $request->input('genre');
-        // $posts = Shop::where("genre", $genre)->get();
-        
-        $posts = Shop::all()->sortByDesc('update_at');
         $genres_all = Shop::distinct()->pluck('genre');
+        $cond_genre = $request->cond_genre;
+      if ($cond_genre != '') {
+          $posts = Shop::where('genre', $cond_genre)->get();
+      } else {
+          $posts = Shop::all();
+      }
         
-        
-        return view('admin.shop.front', ['posts' => $posts, 'genres_all' => $genres_all]);
+        return view('admin.shop.front',  ['posts' => $posts, 'genres_all' => $genres_all, 'cond_genre' => $cond_genre]);
     }
-    
-    public function genre(Request $request)
-    {
-        
-        return redirect('admin');
-        
-    }
+
     public function delete(Request $request)
     {
         Shop::find($request->id)->delete();
 
         return redirect('admin/');
-    }
-    
-    public function url()
-    {
-        return view('admin.url');
-    }
-    
-    public function index2(Request $request)
-    {
-        $cond_name = $request->cond_name;
-      if ($cond_name != '') {
-          $posts = Shop::where('title', $cond_name)->get();
-      } else {
-          $posts = Shop::all();
-      }
-      return view('admin.shop.index', ['posts' => $posts, 'cond_name' => $cond_name]);
     }
     
     

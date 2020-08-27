@@ -100,6 +100,7 @@
                 </div>
             </div>
         </div>
+        <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-primary">一覧へ戻る</a>
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
 </html>

@@ -14,43 +14,40 @@
         .h2 {
             text-align: center;
         }
-        
-      
     </style>
     <body>
         <header>
-            <div class="dropdown">
-              <button type="button" id="dropdown1"
-                      class="btn btn-secondary dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false">
-                      Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdown1">
-                    <a class="dropdown-item" href="#">Menu #1</a>
-                    <a class="dropdown-item" href="#">Menu #2</a>
-                    <a class="dropdown-item" href="#">Menu #3</a>
-              </div>
-            </div>
+       
         </header>
         <div class="container">
             <h2>アナタのリスト</h2>
             <hr color="#c0c0c0">
             <div class="row">
             <div class="col-md-3">
+                <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn btn-primary">新規作成</a>
                 <ul class="nav flex-column">
-                    <li class="active"><a href="#">ジャンルリスト</a></li>
-                   @foreach($genres_all as $genre)
-                    <div class="genre">
-                        <li>
-                            <form method="POST" action="admin/shop/genre{{ $genre }}">
-                                {{ csrf_field() }}
-                                <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn-primary btn-sm">
-                            </form>
-                       </li>
+                    <div class="dropdown">
+                      <button type="button" id="dropdown1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> ジャンルリスト</button>
+                            <div class="genre">
+                            <div class="dropdown-menu" aria-labelledby="dropdown1">
+                                <form action="{{ action('Admin\Shopscontroller@index') }}" method="get">
+                                    <li>
+                                        {{ csrf_field() }}
+                                    <input type="submit" value="全て表示" class="btn btn-primary btn-sm">
+                                    </li>
+                                </form>
+                             @foreach($genres_all as $genre)
+                                <form action="{{ action('Admin\Shopscontroller@index') }}" method="get">
+                                <li>
+                                    <input type="hidden" name="cond_genre" value="{{ $genre }}">
+                                    {{ csrf_field() }}
+                                    <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn-primary btn-sm">
+                                </li>
+                                </form>
+                             @endforeach
+                            </div>     
+                            </div>
                     </div>
-                    @endforeach
                 </ul>
             </div>
                     <div class="posts col-md-9 mx-auto mt-3">
@@ -93,6 +90,6 @@
                 </div>
             </div>
         </div>
-        <scrip="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
 </html>    
