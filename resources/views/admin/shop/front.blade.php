@@ -77,7 +77,8 @@
                                     <div>
                                     <form method="POST" action="admin/shop/delete/{{ $post->id }}">    
                                     {{ csrf_field() }}
-                                    <input type="submit" value="削除" class="btn btn-danger btn-sm">
+                                     
+                                    <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
                                     </form>
                                     </div>
                                 </div>
@@ -90,6 +91,7 @@
                 </div>
             </div>
         </div>
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        
+       <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>    

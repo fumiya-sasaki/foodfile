@@ -64,7 +64,7 @@ class Shopscontroller extends Controller
     
     public function test()
 {
-    return view('admin.shop.test');
+    return view('test');
 }
 public function api(Request $request)
 {

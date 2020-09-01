@@ -15,6 +15,9 @@
         <input type="text" id="title">
     </div>
     <div id="image"></div>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}" defer>
+    </script>
+  
+    
 </body>
 </html>
