@@ -19,7 +19,8 @@ Route::group(['prefix' =>'admin',  'middleware' => 'auth'], function() {
     Route::post('shop/edit', 'Admin\Shopscontroller@update');
 });
     Route::get('test', 'Admin\Shopscontroller@test');
-    Route::get('/api', 'Admin\Shopscontroller@api');
+    Route::get('api', 'Admin\Shopscontroller@api');
+    
 Route::get('/', function () {
     return view('welcome');
 });

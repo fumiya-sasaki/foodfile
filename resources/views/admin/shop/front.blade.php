@@ -7,24 +7,34 @@
         
          <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
          <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
+        <style>
+            .border {
+                border-width: 100px;
+            }
+            
+        </style>
         
         <title>foodfile</title>
     </head>
-    <style>
-        .h2 {
-            text-align: center;
-        }
-    </style>
+    
     <body>
         <header>
        
         </header>
         <div class="container">
-            <h2>アナタのリスト</h2>
-            <hr color="#c0c0c0">
+          <div class="row">
+              <div class="col text-center">
+           <h2>アナタのリスト</h2>
+           </div>
+           </div>
+            <hr class="border border-primary">
             <div class="row">
-            <div class="col-md-3">
-                <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn btn-primary">新規作成</a>
+            <div class="col-md-3 py-1">
+                <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn btn-lg btn-primary">あなたのお店登録</a>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
                 <ul class="nav flex-column">
                     <div class="dropdown">
                       <button type="button" id="dropdown1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> ジャンルリスト</button>
@@ -33,7 +43,7 @@
                                 <form action="{{ action('Admin\Shopscontroller@index') }}" method="get">
                                     <li>
                                         {{ csrf_field() }}
-                                    <input type="submit" value="全て表示" class="btn btn-primary btn-sm">
+                                    <input type="submit" value="全て表示" class="btn btn-sm">
                                     </li>
                                 </form>
                              @foreach($genres_all as $genre)
@@ -41,7 +51,7 @@
                                 <li>
                                     <input type="hidden" name="cond_genre" value="{{ $genre }}">
                                     {{ csrf_field() }}
-                                    <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn-primary btn-sm">
+                                    <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn-sm">
                                 </li>
                                 </form>
                              @endforeach
@@ -91,13 +101,13 @@
                 </div>
             </div>
         </div>
-        
-       <script>(function() {
-  ('form').submit(function() {
-    if (!confirm('削除しますか？')) {
-      return false; 
-    }
-  });
-});</script>
+         <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>$(function() {
+                    $('form').submit(function() {
+                        if (!confirm('削除しますか？')) {
+                        return false; 
+                        }
+                });});</script>
     </body>
 </html>    

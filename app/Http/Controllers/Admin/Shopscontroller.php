@@ -81,6 +81,7 @@ public function api(Request $request)
             $title = $m[1];
         }
     }
+  dd($title);
     if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:image"\s*.*?)>/si', $html, $m)) {
         $param = $m[1];
         if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
