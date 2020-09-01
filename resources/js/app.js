@@ -14,7 +14,7 @@ button.addEventListener("click", function() {
     axios.get('/api',{
         params: {
             // ここにクエリパラメータを指定する
-            id:123
+            url: url
         }
     }).then(res => {
         let image = document.getElementById("image");

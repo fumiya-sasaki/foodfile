@@ -37093,7 +37093,7 @@ button.addEventListener("click", function () {
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api', {
     params: {
       // ここにクエリパラメータを指定する
-      id: 123
+      url: url
     }
   }).then(function (res) {
     var image = document.getElementById("image");

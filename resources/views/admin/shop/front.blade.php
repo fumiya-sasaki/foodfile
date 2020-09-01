@@ -92,6 +92,12 @@
             </div>
         </div>
         
-       <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+       <script>(function() {
+  ('form').submit(function() {
+    if (!confirm('削除しますか？')) {
+      return false; 
+    }
+  });
+});</script>
     </body>
 </html>    
