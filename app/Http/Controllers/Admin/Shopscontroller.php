@@ -75,25 +75,33 @@ public function api(Request $request)
         if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
             $title = $m[1];
         }
+        //dd($m),dd($parm),dd($title) スルーされる
     } else {
         // OGPが無いときは、titleタグから取得
         if (preg_match('/.*<title\s*.*>\s*(.*)\s*<\/title>.*/si', $html, $m)) {
             $title = $m[1];
         }
+        //dd($title)　定義されてないと出る
+        //dd($m) 送らせていただいた画像のように出る
     }
-  dd($title);
     if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:image"\s*.*?)>/si', $html, $m)) {
         $param = $m[1];
         if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
             $image = $m[1];
         }
+        //dd($parm),dd$(m),dd($image) スルーされる
     }
+        //dd($image) 定義されてないと出る
+        //dd($m) 画像のように出る
     if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:url"\s*.*?)>/si', $html, $m)) {
         $param = $m[1];
         if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
             $url = $m[1];
         }
+        //dd($parm),dd($m),dd($url) スルーされる
     }
+        //dd($url) 定義されてないと出る
+        //dd($m) 画像のようにでる
     return [
         'title' => $title,
         'image' => $image,
