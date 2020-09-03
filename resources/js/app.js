@@ -14,6 +14,7 @@ button.addEventListener("click", function() {
     axios.get('/api',{
         params: {
             // ここにクエリパラメータを指定する
+            //左のurlはtest.bladeのidのurl 右のurlは変数url
             url: url
         }
     }).then(res => {

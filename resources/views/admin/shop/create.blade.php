@@ -12,9 +12,6 @@
         
         <style>
         body {
-              border: solid;
-              border-radius: 8px; 
-              border-color: #6cb4e4;
               
              }
         h1 {
@@ -40,6 +37,11 @@
               content: '●';
               color: white;
               margin-right: 8px;
+            }
+            
+            body {
+                background-image: url(https://kumamoto-so-on.com/wp-content/uploads/2019/12/IMG_8045-1024x683.jpeg);
+                background-size: cover;
             }
         </style>
         
@@ -100,6 +102,13 @@
                 </div>
             </div>
         </div>
+         <input type="text" id="url">
+    <button id="button">おしてください</button>
+    <div>
+        <h2>ここにテキストを入力</h2>
+        <input type="text" id="title">
+    </div>
+    <div id="image"></div>
         <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-primary">一覧へ戻る</a>
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>

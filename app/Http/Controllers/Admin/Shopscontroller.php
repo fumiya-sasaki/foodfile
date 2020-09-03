@@ -63,50 +63,46 @@ class Shopscontroller extends Controller
     }
     
     public function test()
-{
-    return view('test');
-}
-public function api(Request $request)
-{
-    $html = file_get_contents( $request->query('url')); //取得するページの URL
-    // OGPパース（タイトル）
-    if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:title"\s*.*?)>/si', $html, $m)) {
-        $param = $m[1];
-        if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
-            $title = $m[1];
-        }
-        //dd($m),dd($parm),dd($title) スルーされる
-    } else {
-        // OGPが無いときは、titleタグから取得
-        if (preg_match('/.*<title\s*.*>\s*(.*)\s*<\/title>.*/si', $html, $m)) {
-            $title = $m[1];
-        }
-        //dd($title)　定義されてないと出る
-        //dd($m) 送らせていただいた画像のように出る
+    {   
+        return view('test');
     }
-    if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:image"\s*.*?)>/si', $html, $m)) {
-        $param = $m[1];
-        if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
-            $image = $m[1];
-        }
-        //dd($parm),dd$(m),dd($image) スルーされる
-    }
-        //dd($image) 定義されてないと出る
-        //dd($m) 画像のように出る
-    if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:url"\s*.*?)>/si', $html, $m)) {
-        $param = $m[1];
-        if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
-            $url = $m[1];
-        }
-        //dd($parm),dd($m),dd($url) スルーされる
-    }
-        //dd($url) 定義されてないと出る
-        //dd($m) 画像のようにでる
-    return [
-        'title' => $title,
-        'image' => $image,
-        'url'   => $url
-    ];
-}
     
+    public function api(Request $request)
+    {
+        $html = file_get_contents( $request->query('url')); //取得するページの URL
+        preg_match('/<head(?: .+?)?>.*?<\/head>/si', $html, $head); //headタグのみ取得
+        // OGPパース（タイトル）
+        $title = null;
+        $image = null;
+        $url = null;
+        if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:title"\s*.*?)>/si', $head[0], $m)) {
+            $param = $m[1];
+            if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
+                $title = $m[1];
+            }
+        } else {
+            
+            // OGPが無いときは、titleタグから取得
+            if (preg_match('/.*<title\s*.*>\s*(.*)\s*<\/title>.*/si', $head[0], $m)) {
+                $title = $m[1];
+            }
+        }
+        if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:image"\s*.*?)>/si', $head[0], $m)) {
+            $param = $m[1];
+            if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
+                $image = $m[1];
+            }
+        }
+        if (preg_match('/.*<meta\s+(.*property\s*=\s*"og:url"\s*.*?)>/si', $head[0], $m)) {
+            $param = $m[1];
+            if (preg_match('/.*content\s*=\s*"(.*?)".*/si', $param, $m)) {
+                $url = $m[1];
+            }
+        }
+        return [
+            'title' => $title,
+            'image' => $image,
+            'url'   => $url
+        ];
+    }
 }

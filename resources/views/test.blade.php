@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>
 <body>
-    <input type="text" id="url">
     <button id="button">おしてください</button>
+    <p>urlを打ち込んでください
+    <input type="text" id="url"></p>
     <div>
-        <h2>ここにテキストを入力</h2>
-        <input type="text" id="title">
+    <input type="text" id="title">
     </div>
-    <div id="image"></div>
+    <div id="image"></div> 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}" defer>
     </script>

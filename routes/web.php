@@ -20,7 +20,6 @@ Route::group(['prefix' =>'admin',  'middleware' => 'auth'], function() {
 });
     Route::get('test', 'Admin\Shopscontroller@test');
     Route::get('api', 'Admin\Shopscontroller@api');
-    
 Route::get('/', function () {
     return view('welcome');
 });

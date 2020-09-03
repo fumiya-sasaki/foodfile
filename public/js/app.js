@@ -37093,6 +37093,7 @@ button.addEventListener("click", function () {
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api', {
     params: {
       // ここにクエリパラメータを指定する
+      //左のurlはtest.bladeのidのurl 右のurlは変数url
       url: url
     }
   }).then(function (res) {

@@ -8,10 +8,64 @@
          <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
          <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
         <style>
-            .border {
-                border-width: 100px;
-            }
-            
+           .btn-horizontal-border {
+                  position: relative;
+                  display: inline-block;
+                  font-weight: bold;
+                  padding: 12px 0 8px;
+                  text-decoration: none;
+                  color: #67c5ff;
+                  transition: .4s;
+                }
+                
+                .btn-horizontal-border:before {
+                  position: absolute;
+                  content: '';
+                  width: 100%;
+                  height: 4px;
+                  top:100%;
+                  left: 0;
+                  border-radius: 3px;
+                  background:#67c5ff;
+                  transition: .2s;
+                }
+                
+                .btn-horizontal-border:after {
+                  position: absolute;
+                  content: '';
+                  width: 100%;
+                  height: 4px;
+                  top:0;
+                  left: 0;
+                  border-radius: 3px;
+                  background:#67c5ff;
+                  transition: .2s;
+                }
+                
+                .btn-horizontal-border:hover:before {
+                  top: -webkit-calc(100% - 3px);
+                  top: calc(100% - 3px);
+                }
+                
+                .btn-horizontal-border:hover:after {
+                  top: 3px;
+                }
+                
+                .btn--orange {
+                  color: #fff;
+                  background-color: #eb6100;
+                }
+                .btn--orange:hover,
+                .btn--orange:hover {
+                  color: #fff;
+                  background: #f56500;
+                }
+                
+                .genre_list {
+                    padding: 5px;
+                }
+                
+               
         </style>
         
         <title>foodfile</title>
@@ -29,8 +83,8 @@
            </div>
             <hr class="border border-primary">
             <div class="row">
-            <div class="col-md-3 py-1">
-                <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn btn-lg btn-primary">あなたのお店登録</a>
+            <div class="col-md-3 py-2">
+                <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn-horizontal-border btn-lg">あなたのお店登録</a>
                 </div>
                 </div>
                 <div class="row">
@@ -40,18 +94,18 @@
                       <button type="button" id="dropdown1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> ジャンルリスト</button>
                             <div class="genre">
                             <div class="dropdown-menu" aria-labelledby="dropdown1">
-                                <form action="{{ action('Admin\Shopscontroller@index') }}" method="get">
+                                <form class="genre_list"action="{{ action('Admin\Shopscontroller@index') }}" method="get">
                                     <li>
                                         {{ csrf_field() }}
-                                    <input type="submit" value="全て表示" class="btn btn-sm">
+                                    <input type="submit" value="全て表示" class="btn btn--orange btn-sm">
                                     </li>
                                 </form>
                              @foreach($genres_all as $genre)
-                                <form action="{{ action('Admin\Shopscontroller@index') }}" method="get">
+                                <form class="genre_list"action="{{ action('Admin\Shopscontroller@index') }}" method="get">
                                 <li>
                                     <input type="hidden" name="cond_genre" value="{{ $genre }}">
                                     {{ csrf_field() }}
-                                    <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn-sm">
+                                    <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn--orange btn-sm">
                                 </li>
                                 </form>
                              @endforeach
@@ -85,7 +139,7 @@
                                     </form>
                                     </div>
                                     <div>
-                                    <form method="POST" action="admin/shop/delete/{{ $post->id }}">    
+                                    <form class="delete_btn" method="POST" action="admin/shop/delete/{{ $post->id }}">    
                                     {{ csrf_field() }}
                                      
                                     <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
@@ -101,10 +155,10 @@
                 </div>
             </div>
         </div>
-         <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script>$(function() {
-                    $('form').submit(function() {
+                    $('form.delete_btn').submit(function() {
                         if (!confirm('削除しますか？')) {
                         return false; 
                         }
