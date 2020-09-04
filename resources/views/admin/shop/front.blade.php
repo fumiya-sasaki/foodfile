@@ -65,93 +65,95 @@
                     padding: 5px;
                 }
                 
-               
+               .image_list {
+                  max-width: 100%;
+                　height: auto;
+               }
+               .edit {
+                   padding: 1px;
+               }
         </style>
         
         <title>foodfile</title>
     </head>
-    
     <body>
-        <header>
-       
-        </header>
         <div class="container">
-          <div class="row">
-              <div class="col text-center">
-           <h2>アナタのリスト</h2>
-           </div>
-           </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h2>アナタのリスト</h2>
+                </div>
+            </div>
             <hr class="border border-primary">
             <div class="row">
-            <div class="col-md-3 py-2">
-                <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn-horizontal-border btn-lg">あなたのお店登録</a>
+                <div class="col-md-3 py-2">
+                    <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn-horizontal-border btn-lg">あなたのお店登録</a>
                 </div>
-                </div>
+            </div>
                 <div class="row">
                     <div class="col-md-3">
-                <ul class="nav flex-column">
-                    <div class="dropdown">
-                      <button type="button" id="dropdown1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> ジャンルリスト</button>
+                    <ul class="nav flex-column">
+                        <div class="dropdown">
+                          <button type="button" id="dropdown1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> ジャンルリスト</button>
                             <div class="genre">
-                            <div class="dropdown-menu" aria-labelledby="dropdown1">
-                                <form class="genre_list"action="{{ action('Admin\Shopscontroller@index') }}" method="get">
-                                    <li>
-                                        {{ csrf_field() }}
-                                    <input type="submit" value="全て表示" class="btn btn--orange btn-sm">
-                                    </li>
-                                </form>
-                             @foreach($genres_all as $genre)
-                                <form class="genre_list"action="{{ action('Admin\Shopscontroller@index') }}" method="get">
-                                <li>
-                                    <input type="hidden" name="cond_genre" value="{{ $genre }}">
-                                    {{ csrf_field() }}
-                                    <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn--orange btn-sm">
-                                </li>
-                                </form>
-                             @endforeach
-                            </div>     
+                                <div class="dropdown-menu" aria-labelledby="dropdown1">
+                                    <form class="genre_list"action="{{ action('Admin\Shopscontroller@index') }}" method="get">
+                                        <li>
+                                            {{ csrf_field() }}
+                                            <input type="submit" value="全て表示" class="btn btn--orange btn-sm">
+                                        </li>
+                                    </form>
+                                    @foreach($genres_all as $genre)
+                                    <form class="genre_list"action="{{ action('Admin\Shopscontroller@index') }}" method="get">
+                                        <li>
+                                            <input type="hidden" name="cond_genre" value="{{ $genre }}">
+                                            {{ csrf_field() }}
+                                            <input type="submit" value="{{ str_limit($genre, 50) }}" class="btn btn--orange btn-sm">
+                                        </li>
+                                    </form>
+                                    @endforeach
+                                </div>     
                             </div>
-                    </div>
-                </ul>
-            </div>
-                    <div class="posts col-md-9 mx-auto mt-3">
+                        </div>
+                    </ul>
+                </div>
+            <div class="posts col-md-9 mx-auto mt-3">
                 <div class="card-deck">
                     @foreach($posts as $post)
                         <div class="post mt-2">
                             <div class="card border-primary mb-3" style="max-width: 18rem;">
                                 <div class="container-fluid">
-                            <div class="row">
-                                <div class="text col-md-10">
-                                    <div class="name">
-                                        {{ str_limit($post->name, 50) }}
-                                    </div>
-                                    <div class="url">
-                                        <a href="{{ str_limit($post->url, 100) }}">詳細</a>
-                                    </div>
-                                     <div class="genre">
-                                        {{ str_limit($post->genre, 100) }}
-                                    </div>
+                                    <div class="row">
+                                        <div class="text col-xs-6">
+                                            <div class="name">
+                                                {{ str_limit($post->name, 50) }}
+                                            </div>
+                                        <div class="url">
+                                            <a href="{{ str_limit($post->url, 100) }}">url</a>
+                                        </div>
+                                            <div class="genre">
+                                                {{ str_limit($post->genre, 100) }}
+                                            </div>
+                                        <div class="image">
+                                            <image class="image_list" src="{{ str_limit($post->image, 100) }}"></image>
+                                        </div>
+                                        </div>
+                                        <div class="edit">
+                                            <form method="GET" action="admin/shop/edit/{{ $post->id }}">    
+                                                {{ csrf_field() }}
+                                                <input type="submit" value="編集" class="btn btn-primary btn-sm">
+                                            </form>
+                                        </div>
+                                        <div class="delete">
+                                            <form class="delete_btn" method="POST" action="admin/shop/delete/{{ $post->id }}">    
+                                                {{ csrf_field() }}
+                                                <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
+                                            </form>
+                                        </div>
+                                    </div>    
                                 </div>
-                                     <div>
-                                    <form method="GET" action="admin/shop/edit/{{ $post->id }}">    
-                                    {{ csrf_field() }}
-                                    <input type="submit" value="編集" class="btn btn-primary btn-sm">
-                                    </form>
-                                    </div>
-                                    <div>
-                                    <form class="delete_btn" method="POST" action="admin/shop/delete/{{ $post->id }}">    
-                                    {{ csrf_field() }}
-                                     
-                                    <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>
                             </div>
                         </div>
-                    <hr color="#c0c0c0">
                     @endforeach
-                    </div>
                 </div>
             </div>
         </div>
