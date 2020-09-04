@@ -63,13 +63,13 @@
                         <div class="form-group row">
                             <label class="logo col-md-2" for="title">お店の名前</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="name"  placeholder="お店の名前" value="{{ old('name') }}">
+                                <input type="text" id="title" class="form-control" name="name"  placeholder="お店の名前" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <lavel class="logo col-md-2" for="title">URL</lavel>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="url" placeholder="URL" value="{{ old('url') }}">
+                                <input type="text" id="url" class="form-control" name="url" placeholder="URL" value="{{ old('url') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -81,7 +81,7 @@
                         <div class="form-group row">
                             <lavel class="logo col-md-2" for="title">画像</lavel>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="image" placeholder="画像" value="{{ old('image') }}">
+                                <input type="text" id="image" class="form-control" name="image" placeholder="画像" value="{{ old('image') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -99,16 +99,10 @@
                         {{ csrf_field() }}
                         <p><input type="submit" class="btn btn-primary" value="登録"></p>
                     </form>
+                             <button id="button">おしてください</button>
                 </div>
             </div>
         </div>
-         <input type="text" id="url">
-    <button id="button">おしてください</button>
-    <div>
-        <h2>ここにテキストを入力</h2>
-        <input type="text" id="title">
-    </div>
-    <div id="image"></div>
         <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-primary">一覧へ戻る</a>
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
