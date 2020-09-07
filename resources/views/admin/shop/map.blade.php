@@ -3,7 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Up to World</title>
- 
+   <style>
+     #target {
+ width: 700px;
+   height: 400px;
+     }
+   </style>
   </head>
 
   <body>
@@ -26,21 +31,16 @@
 
     <script>
         function initMap() {
-
         //マップ初期表示の位置設定
         var target = document.getElementById('target');
         var centerp = {lat: 37.67229496806523, lng: 137.88838989062504};
-
         //マップ表示
         map = new google.maps.Map(target, {
           center: centerp,
           zoom: 15,
         });
-
       };
-
       var markerD = [];
-
       // DB情報の取得
       $(function(){
         $.ajax({
@@ -56,25 +56,18 @@
           }
         });
       });
-
       var map;
       var marker = [];
       var infoWindow = [];
-
       function setMarker(markerData) {
-
         // console.log(markerData);
         // console.log(markerData.length);
-
         //マーカー生成
         var sidebar_html = "";
         var icon;
-
         for (var i = 0; i < markerData.length; i++) {
-
           var latNum = parseFloat(markerData[i]['latitude']);
           var lngNum = parseFloat(markerData[i]['longitube']);
-
           // マーカー位置セット
           var markerLatLng = new google.maps.LatLng({
             lat: latNum,
@@ -89,12 +82,9 @@
           });
           
         }
-
         
       }
-
       
-
      
     </script>
   </body>
