@@ -44,8 +44,8 @@
       // DB情報の取得
       $(function(){
         $.ajax({
-          type: "POST",
-          url: "/admin/shop/mapMarker",
+          type: "GET",
+          url: "/admin/shop/mapmarker",
           dataType: "json",
           success: function(data){
             markerD = data;
@@ -68,6 +68,7 @@
         for (var i = 0; i < markerData.length; i++) {
           var latNum = parseFloat(markerData[i]['latitude']);
           var lngNum = parseFloat(markerData[i]['longitube']);
+          console.log(latNum);
           // マーカー位置セット
           var markerLatLng = new google.maps.LatLng({
             lat: latNum,
