@@ -44,7 +44,8 @@
                 background-size: cover;
             }
         </style>
-        
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqD8_cvwnofDfl9QhwuKA-vjdL-iUFysw&callback"></script>
     </head>
     <body>
         <div class="container">
@@ -85,25 +86,52 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="logo col-md-2" for="title">住所</label>
+                            <div class="col-md-10">
+                                <input type="text" id="address" class="form-control" name="adress" placeholder="住所" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <lavel class="logo col-md-2" for="title">緯度</lavel>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="latitude" placeholder="緯度" value="{{ old('latitude') }}">
+                                <input type="text" id="latitude" class="form-control" name="latitude" placeholder="緯度" value="{{ old('latitude') }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <lavel class="logo col-md-2" for="title">経度</lavel>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="longitube" placeholder="経度" value="{{ old('longitube') }}">
+                                <input type="text" id="longitube" class="form-control" name="longitube" placeholder="経度" value="{{ old('longitube') }}">
                             </div>
                         </div>
                         {{ csrf_field() }}
                         <p><input type="submit" class="btn btn-primary" value="登録"></p>
                     </form>
                              <button id="button">おしてください</button>
+                             <input type="button" value="住所から緯度経度を入力する" id="attrLatLng">
                 </div>
             </div>
         </div>
         <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-primary">一覧へ戻る</a>
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script type="text/javascript">
+            $(function(){
+                function attrLatLngFromAddress(address){
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({'address': address}, function(results, status){
+                        if(status == google.maps.GeocoderStatus.OK) {
+                            var lat = results[0].geometry.location.lat();
+                            var lng = results[0].geometry.location.lng();
+                            // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
+                            document.getElementById("latitude").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
+                            document.getElementById("longitube").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
+                        }
+                    });
+                }
+                $('#attrLatLng').click(function(){
+                    var address = document.getElementById("address").value;
+                    attrLatLngFromAddress(address);
+                });
+            });
+        </script>
     </body>
 </html>
