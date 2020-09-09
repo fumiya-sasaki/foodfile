@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
          <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
+        
         
         <title>foodfile</title>
         
@@ -50,6 +50,7 @@
     <body>
         <div class="container">
         <h1 class="col-md-2 mt-4 mx-auto">登録画面</h1>
+        <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-primary">一覧へ戻る</a>
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <h2>アナタのお店登録</h2>
@@ -106,14 +107,15 @@
                         {{ csrf_field() }}
                         <p><input type="submit" class="btn btn-primary" value="登録"></p>
                     </form>
-                             <button id="button">おしてください</button>
-                             <input type="button" value="住所から緯度経度を入力する" id="attrLatLng">
                 </div>
             </div>
+                    <div class="col-md-5 mx-auto">
+                             <button class="btn btn-primary" id="button">urlから名前と画像取得</button>
+                             <button class="btn btn-primary" id="attrLatLng">住所から緯度、経度を検索</button>
+                    </div>
         </div>
-        <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-primary">一覧へ戻る</a>
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
-        <script type="text/javascript">
+       
+        <script>
             $(function(){
                 function attrLatLngFromAddress(address){
                     var geocoder = new google.maps.Geocoder();
@@ -123,7 +125,7 @@
                             var lng = results[0].geometry.location.lng();
                             // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
                             document.getElementById("latitude").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
-                            document.getElementById("longitube").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
+                            document.getElementById("longitube").value = (Math.round(lng * 1000000) / 1000000).toFixed(6);
                         }
                     });
                 }
@@ -132,6 +134,7 @@
                     attrLatLngFromAddress(address);
                 });
             });
+
         </script>
     </body>
 </html>

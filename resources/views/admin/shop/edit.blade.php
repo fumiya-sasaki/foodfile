@@ -9,6 +9,8 @@
          <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
         
         <title>foodfile</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqD8_cvwnofDfl9QhwuKA-vjdL-iUFysw&callback"></script>
     </head>
     <body>
         <div class="container">
@@ -49,15 +51,21 @@
                             </div>
                         </div>
                          <div class="form-group row">
+                            <label class="col-md-2">住所</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="address" value="">
+                            </div>
+                        </div>
+                         <div class="form-group row">
                             <label class="col-md-2">緯度</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="latitude" value="{{ $shop_form->latitude }}">
+                                 <input type="text" id="latitude" class="form-control" name="latitude" value="">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label class="col-md-2">経度</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="longitube" value="{{ $shop_form->longitube }}">
+                                <input type="text" id="longitube" class="form-control" name="longitube" value="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -69,7 +77,29 @@
                     </form>
                 </div>
             </div>
+              <button class="btn btn-primary" id="attrLatLng">住所から緯度、経度を検索</button>
         </div>
+        <script  type="text/javascript">
+             $(function(){
+                function attrLatLngFromAddress(address){
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({'address': address}, function(results, status){
+                        if(status == google.maps.GeocoderStatus.OK) {
+                            var lat = results[0].geometry.location.lat();
+                            var lng = results[0].geometry.location.lng();
+                            // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
+                            document.getElementById("latitude").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
+                            document.getElementById("longitube").value = (Math.round(lng * 1000000) / 1000000).toFixed(6);
+                        }
+                    });
+                }
+                $('#attrLatLng').click(function(){
+                    var address = document.getElementById("address").value;
+                    attrLatLngFromAddress(address);
+                });
+            });
+
+        </script>
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
 </html>    
