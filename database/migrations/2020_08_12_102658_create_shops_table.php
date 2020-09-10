@@ -19,8 +19,9 @@ class CreateShopsTable extends Migration
             $table->string('url');//url
             $table->string('genre');//ジャンル
             $table->string('image')->nullable();//画像
-            $table->double('latitude');//緯度
-            $table->double('longitube');//経度
+            $table->string('address')->nullable();
+            $table->double('latitude')->nullable();//緯度
+            $table->double('longitube')->nullable();//経度
             $table->timestamps();
         });
     }

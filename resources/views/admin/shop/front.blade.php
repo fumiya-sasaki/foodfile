@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
          <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
+        
         <style>
            .btn-horizontal-border {
                   position: relative;
@@ -72,6 +72,18 @@
                .edit {
                    padding: 1px;
                }
+               
+               .delete {
+                   padding: 1px;
+               }
+               
+               .url {
+                   font-size: 20px;
+               }
+               .rounded {
+               border-width:100px
+                   
+               }
         </style>
         
         <title>foodfile</title>
@@ -87,6 +99,10 @@
             <div class="row">
                 <div class="col-md-3 py-2">
                     <a href="{{ action('Admin\Shopscontroller@add') }}" role="button" class="btn-horizontal-border btn-lg">あなたのお店登録</a>
+                </div>
+                <div class="col-md-3 py-2">
+                    
+        <a href="{{ action('Admin\Shopscontroller@map') }}" role="button" class="btn btn-primary">mapへ移動</a>
                 </div>
             </div>
                 <div class="row">
@@ -128,13 +144,17 @@
                                                 {{ str_limit($post->name, 50) }}
                                             </div>
                                         <div class="url">
-                                            <a href="{{ str_limit($post->url, 100) }}">url</a>
+                                            <a href="{{ str_limit($post->url, 100) }}">お店のページ</a>
                                         </div>
                                             <div class="genre">
                                                 {{ str_limit($post->genre, 100) }}
                                             </div>
                                         <div class="image">
-                                            <image class="image_list" src="{{ str_limit($post->image, 100) }}"></image>
+                                           <div "card border-primary" style="max-width: 20rem">
+                                               
+                                            <image class="image_list" src="{{ $post->image }}"></image>
+                                           </div>
+                                            
                                         </div>
                                         </div>
                                         <div class="edit">

@@ -13,7 +13,8 @@ class Shop extends Model
         'url' => 'required',
         'genre' => 'required',
         'image' => 'nullable',
-        'latitude' => 'required',
-        'longitube' => 'required',
+        'address' => 'nullable',
+        'latitude' => 'nullable',
+        'longitube' => 'nullable',
         );
 }

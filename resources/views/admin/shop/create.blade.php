@@ -89,7 +89,7 @@
                         <div class="form-group row">
                             <label class="logo col-md-2" for="title">住所</label>
                             <div class="col-md-10">
-                                <input type="text" id="address" class="form-control" name="adress" placeholder="住所" value="">
+                                <input type="text" id="address" class="form-control" name="address" placeholder="住所" value="{{ old('address') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -114,27 +114,6 @@
                              <button class="btn btn-primary" id="attrLatLng">住所から緯度、経度を検索</button>
                     </div>
         </div>
-       
-        <script>
-            $(function(){
-                function attrLatLngFromAddress(address){
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({'address': address}, function(results, status){
-                        if(status == google.maps.GeocoderStatus.OK) {
-                            var lat = results[0].geometry.location.lat();
-                            var lng = results[0].geometry.location.lng();
-                            // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
-                            document.getElementById("latitude").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
-                            document.getElementById("longitube").value = (Math.round(lng * 1000000) / 1000000).toFixed(6);
-                        }
-                    });
-                }
-                $('#attrLatLng').click(function(){
-                    var address = document.getElementById("address").value;
-                    attrLatLngFromAddress(address);
-                });
-            });
-
-        </script>
+         <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
 </html>

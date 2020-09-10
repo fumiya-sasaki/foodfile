@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -37068,67 +37068,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-
-var button = document.getElementById("button");
-button.addEventListener("click", function () {
-  var url = document.getElementById("url").value;
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/shop/api', {
-    params: {
-      // ここにクエリパラメータを指定する
-      //左のurlはtest.bladeのidのurl 右のurlは変数url
-      url: url
-    }
-  }).then(function (res) {
-    var image = document.getElementById("image");
-    var title = document.getElementById("title");
-    title.value = res.data['title'];
-    image.value = res.data['image'];
-    image.innerHTML = "";
-    console.log(res.data);
-  });
-});
-$(function () {
-  function attrLatLngFromAddress(address) {
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({
-      'address': address
-    }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        var lat = results[0].geometry.location.lat();
-        var lng = results[0].geometry.location.lng(); // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
-
-        document.getElementById("latitude").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
-        document.getElementById("longitube").value = (Math.round(lng * 1000000) / 1000000).toFixed(6);
-      }
-    });
-  }
-
-  $('#attrLatLng').click(function () {
-    var address = document.getElementById("address").value;
-    attrLatLngFromAddress(address);
-  });
-});
-
-/***/ }),
-
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -37174,38 +37113,149 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/sass/admin.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/admin.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*****************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/admin.scss ***!
-  \*****************************************************************************************/
+/***/ "./resources/js/map.js":
+/*!*****************************!*\
+  !*** ./resources/js/map.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+function initMap() {
+  //マップ初期表示の位置設定
+  var target = document.getElementById('target');
+  var centerp = {
+    lat: 35.681236,
+    lng: 139.767125
+  }; //マップ表示
+
+  map = new google.maps.Map(target, {
+    center: centerp,
+    zoom: 10
+  });
+}
+
+;
+var markerD = []; // DB情報の取得
+
+$(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+    type: "POST",
+    url: "/admin/shop/mapmarker",
+    dataType: "json",
+    success: function success(data) {
+      markerD = data;
+      setMarker(markerD);
+    },
+    error: function error(XMLHttpRequest, textStatus, errorThrown) {
+      alert('Error : ' + errorThrown);
+    }
+  });
+});
+var map;
+var marker = [];
+var infoWindow = [];
+
+function setMarker(markerData) {
+  // console.log(markerData);
+  // console.log(markerData.length);
+  //マーカー生成
+  var sidebar_html = "";
+  var icon;
+
+  for (var i = 0; i < markerData.length; i++) {
+    var latNum = parseFloat(markerData[i]['latitude']);
+    var lngNum = parseFloat(markerData[i]['longitube']); // マーカー位置セット
+
+    var markerLatLng = new google.maps.LatLng({
+      lat: latNum,
+      lng: lngNum
+    }); // マーカーのセット
+
+    marker[i] = new google.maps.Marker({
+      position: markerLatLng,
+      // マーカーを立てる位置を指定
+      map: map,
+      // マーカーを立てる地図を指定
+      icon: icon // アイコン指定
+
+    });
+    infoWindow[i] = new google.maps.InfoWindow({
+      // 吹き出しの追加
+      content: markerData[i]['name'] // 吹き出しに表示する内容
+
+    });
+    markerEvent(i);
+  }
+}
+
+var getMap = function () {
+  function codeAddress(address) {
+    // google.maps.Geocoder()コンストラクタのインスタンスを生成
+    var geocoder = new google.maps.Geocoder(); // geocoder.geocode()メソッドを実行 
+
+    geocoder.geocode({
+      'address': address
+    }, function (results, status) {
+      // ジオコーディングが成功した場合
+      if (status == google.maps.GeocoderStatus.OK) {
+        // 変換した緯度・経度情報を地図の中心に表示
+        map.setCenter(results[0].geometry.location); // ジオコーディングが成功しなかった場合
+      } else {
+        console.log('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  } //inputのvalueで検索して地図を表示
+
+
+  return {
+    getAddress: function getAddress() {
+      // ボタンに指定したid要素を取得
+      var button = document.getElementById("map_button"); // ボタンが押された時の処理
+
+      button.onclick = function () {
+        // フォームに入力された住所情報を取得
+        var address = document.getElementById("address").value; // 取得した住所を引数に指定してcodeAddress()関数を実行
+
+        codeAddress(address);
+      }; //読み込まれたときに地図を表示
+
+
+      window.onload = function () {
+        // フォームに入力された住所情報を取得
+        var address = document.getElementById("address").value; // 取得した住所を引数に指定してcodeAddress()関数を実行
+
+        codeAddress(address);
+      };
+    }
+  };
+}();
+
+getMap.getAddress();
+
+function markerEvent(i) {
+  marker[i].addListener('click', function () {
+    // マーカーをクリックしたとき
+    infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+  });
+}
+
+/***/ }),
+
+/***/ 1:
+/*!***********************************!*\
+  !*** multi ./resources/js/map.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/js/map.js */"./resources/js/map.js");
 
 
 /***/ })

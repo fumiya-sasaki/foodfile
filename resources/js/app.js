@@ -11,7 +11,7 @@ import axios from 'axios';
 let button = document.getElementById("button");
 button.addEventListener("click", function() {
     let url = document.getElementById("url").value;
-    axios.get('/api',{
+    axios.get('/admin/shop/api',{
         params: {
             // ここにクエリパラメータを指定する
             //左のurlはtest.bladeのidのurl 右のurlは変数url
@@ -21,12 +21,31 @@ button.addEventListener("click", function() {
         let image = document.getElementById("image");
         let title = document.getElementById("title");
         title.value = res.data['title'];
+        image.value = res.data['image'];
         image.innerHTML = "";
-        image.insertAdjacentHTML('beforebegin', '<p>' + res.data['title'] + '</p>');
-        image.insertAdjacentHTML('beforebegin', '<p>' + res.data['url'] + '</p>');
-        image.insertAdjacentHTML('beforebegin', '<img src=' + res.data['image'] + '>');
+     
+       
         console.log(res.data)
     })
 });
+
+ $(function(){
+                function attrLatLngFromAddress(address){
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({'address': address}, function(results, status){
+                        if(status == google.maps.GeocoderStatus.OK) {
+                            var lat = results[0].geometry.location.lat();
+                            var lng = results[0].geometry.location.lng();
+                            // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
+                            document.getElementById("latitude").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
+                            document.getElementById("longitube").value = (Math.round(lng * 1000000) / 1000000).toFixed(6);
+                        }
+                    });
+                }
+                $('#attrLatLng').click(function(){
+                    var address = document.getElementById("address").value;
+                    attrLatLngFromAddress(address);
+                });
+            });
 
 

@@ -14,6 +14,9 @@
     <div>
     <input type="text" id="title">
     </div>
+    <div>
+        <input type="text" id="image">
+    </div>
     <div id="image"></div> 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}" defer>

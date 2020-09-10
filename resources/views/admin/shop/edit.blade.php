@@ -53,19 +53,19 @@
                          <div class="form-group row">
                             <label class="col-md-2">住所</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="address" value="">
+                                <input type="text" id="address" class="form-control" name="address" value="{{ $shop_form->address }}">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label class="col-md-2">緯度</label>
                             <div class="col-md-10">
-                                 <input type="text" id="latitude" class="form-control" name="latitude" value="">
+                                 <input type="text" id="latitude" class="form-control" name="latitude" value="{{ $shop_form->latitude }}">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label class="col-md-2">経度</label>
                             <div class="col-md-10">
-                                <input type="text" id="longitube" class="form-control" name="longitube" value="">
+                                <input type="text" id="longitube" class="form-control" name="longitube" value="{{ $shop_form->longitube }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -79,7 +79,7 @@
             </div>
               <button class="btn btn-primary" id="attrLatLng">住所から緯度、経度を検索</button>
         </div>
-        <script  type="text/javascript">
+        <script>
              $(function(){
                 function attrLatLngFromAddress(address){
                     var geocoder = new google.maps.Geocoder();
@@ -100,6 +100,5 @@
             });
 
         </script>
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
 </html>    

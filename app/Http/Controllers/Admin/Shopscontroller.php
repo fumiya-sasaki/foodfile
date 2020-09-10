@@ -105,4 +105,17 @@ class Shopscontroller extends Controller
             'url'   => $url
         ];
     }
+    public function map()
+    {
+        return view('admin.shop.map');
+    }
+    
+    public function mapmarker() 
+    {
+          $map = Shop::select('name','latitude','longitube')->get();
+         
+          
+    
+          return response()->json($map);
+    }
 }
