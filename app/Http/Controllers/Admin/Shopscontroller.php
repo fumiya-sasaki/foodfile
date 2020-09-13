@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth; 
 
-use App\shop;
+use App\Shop;
+use App\User;
 class Shopscontroller extends Controller
 {
     public function add()
@@ -17,6 +19,7 @@ class Shopscontroller extends Controller
     {
         $validated = $this->validate($request, Shop::$rules);
         $shop = new Shop;
+        $shop->user_id = Auth::user()->id;
         $shop->fill($validated);
         $shop->save();
         
@@ -24,13 +27,14 @@ class Shopscontroller extends Controller
     }
     
     public function index(Request $request) 
-    {
-        $genres_all = Shop::distinct()->pluck('genre');
+    {   
+        $user = Auth::user()->id;
+        $genres_all = Shop::where('user_id', $user)->distinct()->pluck('genre');
         $cond_genre = $request->cond_genre;
       if ($cond_genre != '') {
-          $posts = Shop::where('genre', $cond_genre)->get();
+          $posts = Shop::where('genre', $cond_genre)->where('user_id', $user)->get()->sortByDesc('updated_at');
       } else {
-          $posts = Shop::all();
+          $posts = Shop::where('user_id', $user)->get()->sortByDesc('updated_at');
       }
         
         return view('admin.shop.front',  ['posts' => $posts, 'genres_all' => $genres_all, 'cond_genre' => $cond_genre]);
@@ -112,10 +116,17 @@ class Shopscontroller extends Controller
     
     public function mapmarker() 
     {
-          $map = Shop::select('name','latitude','longitube')->get();
+       
+        $user = Auth::user()->id;
+          $map = Shop::where('user_id', $user)->select('name','latitude','longitube')->get();
          
           
     
           return response()->json($map);
+    }
+    
+     public function ind(Request $request) {
+        $user = Auth::user();   #ログインユーザー情報を取得します。
+        return view('hello', ['user' => $user]);
     }
 }
