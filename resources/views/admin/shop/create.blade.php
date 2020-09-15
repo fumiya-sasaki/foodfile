@@ -4,116 +4,80 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        
-        
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/create.css') }}" rel="stylesheet">
         <title>foodfile</title>
-        
-        <style>
-        body {
-              
-             }
-        h1 {
-            color: #6cb4e4;
-            text-align: center;
-            padding: 0.25em;
-            border-top: solid 2px #6cb4e4;
-            border-bottom: solid 2px #6cb4e4;
-            background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
-            background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
-            }
-        .logo {
-              color: #505050;/*文字色*/
-              padding: 0.5em;/*文字周りの余白*/
-              display: inline-block;/*おまじない*/
-              line-height: 1.3;/*行高*/
-              background: #dbebf8;/*背景色*/
-              vertical-align: middle;
-              border-radius: 25px 0px 0px 25px;/*左側の角を丸く*/
-            }
-            
-            .logo:before {
-              content: '●';
-              color: white;
-              margin-right: 8px;
-            }
-            
-            body {
-                background-image: url(https://kumamoto-so-on.com/wp-content/uploads/2019/12/IMG_8045-1024x683.jpeg);
-                background-size: cover;
-            }
-        </style>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqD8_cvwnofDfl9QhwuKA-vjdL-iUFysw&callback"></script>
     </head>
     <body>
-        <div class="container">
-        <h1 class="col-md-2 mt-4 mx-auto">登録画面</h1>
-        <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-primary">一覧へ戻る</a>
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <h2>アナタのお店登録</h2>
-                    <form action="{{ action('Admin\Shopscontroller@create') }}" method="post" enctype="multipart/form-data">
-                        @if (count($errors) > 0)
-                        <ul>
-                            @foreach($errors->all() as $e)
-                            <li>{{ $e }}</li>
-                            @endforeach
-                        </ul>
-                        @endif
-                        <div class="form-group row">
-                            <label class="logo col-md-2" for="title">お店の名前</label>
-                            <div class="col-md-10">
-                                <input type="text" id="title" class="form-control" name="name"  placeholder="お店の名前" value="{{ old('name') }}">
-                            </div>
+        <div id="content_wrap">
+	        <div class="content">
+                <div class="container">
+                    <div class="col text-center">
+                        <h1 class="col-md-5 mt-5 mx-auto title">Add Shop</h1>
+                    </div>
+                    <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-success">一覧へ戻る</a>
+                    <hr class="border">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <form action="{{ action('Admin\Shopscontroller@create') }}" method="post" enctype="multipart/form-data">
+                                @if (count($errors) > 0)
+                                    <ul>
+                                        @foreach($errors->all() as $e)
+                                            <li>{{ $e }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                <div class="form-group row">
+                                    <label class="logo col-md-2" for="title">URL</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="url" class="form-control" name="url" placeholder="URL  *必須" value="{{ old('url') }}">
+                                        <button class="btn btn-success col-md-5 mt-2" type="button" id="button">URLから名前と画像取得</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="logo col-md-2" for="title">Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="title" class="form-control" name="name"  placeholder="お店の名前  *必須" value="{{ old('name') }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <lavel class="logo col-md-2" for="title">Image</lavel>
+                                    <div class="col-md-9">
+                                        <p id="image_open"></p>
+                                        <input type="text" id="image" class="form-control" name="image" placeholder="画像アドレスから画像を取得" value="{{ old('image') }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <lavel class="logo col-md-2" for="title">Genre</lavel>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="genre" placeholder="ジャンル  *必須" value="{{ old('genre') }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="logo col-md-2" for="title">Address</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="address" class="form-control" name="address" placeholder="住所を入力したらMAPナンバーを取得" value="{{ old('address') }}">
+                                        <button class="btn btn-success col-md-5 mt-2" type="button" id="attrLatLng">MAPナンバーを取得</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <lavel class="logo col-md-2" for="title">MAP.No</lavel>
+                                    <div class="col-md-9">
+                                       <input type="text" id="longitube" class="form-control" name="longitube" placeholder="MAPナンバーでMAPにピンが立つ" value="">
+                                    </div>
+                                </div>
+                                <input type="hidden" id="latitude" class="form-control" name="latitude" placeholder="緯度" value="">
+                                {{ csrf_field() }}
+                                <p><input type="submit" class="btn btn-success" value="登録"></p>
+                            </form>
                         </div>
-                        <div class="form-group row">
-                            <lavel class="logo col-md-2" for="title">URL</lavel>
-                            <div class="col-md-10">
-                                <input type="text" id="url" class="form-control" name="url" placeholder="URL" value="{{ old('url') }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <lavel class="logo col-md-2" for="title">ジャンル</lavel>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" name="genre" placeholder="ジャンル" value="{{ old('genre') }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <lavel class="logo col-md-2" for="title">画像</lavel>
-                            <div class="col-md-10">
-                                <input type="text" id="image" class="form-control" name="image" placeholder="画像" value="{{ old('image') }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="logo col-md-2" for="title">住所</label>
-                            <div class="col-md-10">
-                                <input type="text" id="address" class="form-control" name="address" placeholder="住所" value="{{ old('address') }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <lavel class="logo col-md-2" for="title">緯度</lavel>
-                            <div class="col-md-10">
-                                <input type="text" id="latitude" class="form-control" name="latitude" placeholder="緯度" value="{{ old('latitude') }}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <lavel class="logo col-md-2" for="title">経度</lavel>
-                            <div class="col-md-10">
-                                <input type="text" id="longitube" class="form-control" name="longitube" placeholder="経度" value="{{ old('longitube') }}">
-                            </div>
-                        </div>
-                        {{ csrf_field() }}
-                        <p><input type="submit" class="btn btn-primary" value="登録"></p>
-                    </form>
+                    </div>
                 </div>
             </div>
-                    <div class="col-md-5 mx-auto">
-                             <button class="btn btn-primary" id="button">urlから名前と画像取得</button>
-                             <button class="btn btn-primary" id="attrLatLng">住所から緯度、経度を検索</button>
-                    </div>
         </div>
-         <script src="{{ secure_asset('js/app.js') }}" defer></script>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqD8_cvwnofDfl9QhwuKA-vjdL-iUFysw&callback"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
 </html>
