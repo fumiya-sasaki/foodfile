@@ -9,6 +9,9 @@
         <title>foodfile</title>
     </head>
     <body>
+        <a>
+            デプロイ
+        </a>
     <div id="content_wrap">
 	    <div class="content">
             <div class="container">
