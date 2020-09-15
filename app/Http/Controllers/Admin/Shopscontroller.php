@@ -23,7 +23,7 @@ class Shopscontroller extends Controller
         $shop->fill($validated);
         $shop->save();
         
-        return redirect('admin');
+        return redirect('/');
     }
     
     public function index(Request $request) 
@@ -34,6 +34,7 @@ class Shopscontroller extends Controller
       if ($cond_genre != '') {
           $posts = Shop::where('genre', $cond_genre)->where('user_id', $user)->get()->sortByDesc('updated_at');
       } else {
+           
           $posts = Shop::where('user_id', $user)->get()->sortByDesc('updated_at');
       }
         
@@ -44,13 +45,14 @@ class Shopscontroller extends Controller
     {
         Shop::find($request->id)->delete();
 
-        return redirect('admin/');
+        return redirect('/');
     }
     
     
     public function edit(Request $request)
     {
         $shop = Shop::find($request->id);
+         
         if (empty($shop)) {
             abort(404);
         }
@@ -63,7 +65,7 @@ class Shopscontroller extends Controller
         $shop = Shop::find($request->id);
         $shop_form = $request->all();
         $shop->fill($shop_form)->save($shop_form);
-        return redirect('admin/');
+        return redirect('/');
     }
     
     public function test()

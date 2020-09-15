@@ -1,6 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/admin.css": "/css/admin.css",
+    "/css/create.css": "/css/create.css",
+    "/css/edit.css": "/css/edit.css",
+    "/css/map.css": "/css/map.css",
+    "/css/front.css": "/css/front.css",
+    "/js/edit.js": "/js/edit.js",
+    "/js/front.js": "/js/front.js",
     "/js/map.js": "/js/map.js"
 }

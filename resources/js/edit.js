@@ -1,11 +1,4 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
-
 
 import axios from 'axios';
 let button = document.getElementById("button");
@@ -23,7 +16,7 @@ button.addEventListener("click", function() {
         title.value = res.data['title'];
         image.value = res.data['image'];
         image.innerHTML = "";
-         $('#image_open').html('<img src=' + res.data['image'] + ' width="457" height="309" >');
+        $('#image_open').html('<img src=' + res.data['image'] + ' width="457" height="309">');
         console.log(res.data)
     })
 });
@@ -46,5 +39,10 @@ button.addEventListener("click", function() {
                     attrLatLngFromAddress(address);
                 });
             });
-
-
+            
+            $(function() {
+                    $('form.delete_btn').submit(function() {
+                        if (!confirm('削除しますか？')) {
+                        return false; 
+                        }
+                });});

@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/map.css') }}" rel="stylesheet">
-    <title>アナタのMAP</title>
+    <title>food file</title>
   </head>
   <body>
     <div id="content_wrap">

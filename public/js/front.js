@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -37068,68 +37068,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-
-var button = document.getElementById("button");
-button.addEventListener("click", function () {
-  var url = document.getElementById("url").value;
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/shop/api', {
-    params: {
-      // ここにクエリパラメータを指定する
-      //左のurlはcreate.bladeのidのurl 右のurlは変数url
-      url: url
-    }
-  }).then(function (res) {
-    var image = document.getElementById("image");
-    var title = document.getElementById("title");
-    title.value = res.data['title'];
-    image.value = res.data['image'];
-    image.innerHTML = "";
-    $('#image_open').html('<img src=' + res.data['image'] + ' width="457" height="309" >');
-    console.log(res.data);
-  });
-});
-$(function () {
-  function attrLatLngFromAddress(address) {
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({
-      'address': address
-    }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        var lat = results[0].geometry.location.lat();
-        var lng = results[0].geometry.location.lng(); // 小数点第六位以下を四捨五入した値を緯度経度にセット、小数点以下の値が第六位に満たない場合は0埋め
-
-        document.getElementById("latitude").value = (Math.round(lat * 1000000) / 1000000).toFixed(6);
-        document.getElementById("longitube").value = (Math.round(lng * 1000000) / 1000000).toFixed(6);
-      }
-    });
-  }
-
-  $('#attrLatLng').click(function () {
-    var address = document.getElementById("address").value;
-    attrLatLngFromAddress(address);
-  });
-});
-
-/***/ }),
-
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -37175,74 +37113,30 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/create.scss":
-/*!************************************!*\
-  !*** ./resources/sass/create.scss ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/edit.scss":
-/*!**********************************!*\
-  !*** ./resources/sass/edit.scss ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/front.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/front.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/map.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/map.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!***************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/create.scss ./resources/sass/edit.scss ./resources/sass/map.scss ./resources/sass/front.scss ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./resources/js/front.js":
+/*!*******************************!*\
+  !*** ./resources/js/front.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/sass/create.scss */"./resources/sass/create.scss");
-__webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/sass/edit.scss */"./resources/sass/edit.scss");
-__webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/sass/map.scss */"./resources/sass/map.scss");
-module.exports = __webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/sass/front.scss */"./resources/sass/front.scss");
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+/***/ }),
+
+/***/ 3:
+/*!*************************************!*\
+  !*** multi ./resources/js/front.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/foodfile/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

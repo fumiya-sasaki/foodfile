@@ -37122,6 +37122,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+google.maps.event.addDomListener(window, 'load', initMap);
+
 function initMap() {
   //マップ初期表示の位置設定
   var target = document.getElementById('target');

@@ -1,5 +1,5 @@
 require('./bootstrap');
-
+google.maps.event.addDomListener( window, 'load', initMap );
 function initMap() {
         //マップ初期表示の位置設定
           var target = document.getElementById('target');
@@ -9,7 +9,6 @@ function initMap() {
               center: centerp,
               zoom: 10,
               });
-              
         };
       var markerD = [];
       // DB情報の取得
@@ -65,10 +64,6 @@ function initMap() {
   function codeAddress(address) {
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
     var geocoder = new google.maps.Geocoder();
- 
-    
- 
-    
      
     // geocoder.geocode()メソッドを実行 
     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -78,17 +73,12 @@ function initMap() {
          
         // 変換した緯度・経度情報を地図の中心に表示
         map.setCenter(results[0].geometry.location);
-         
-        
         
       // ジオコーディングが成功しなかった場合
       } else {
         console.log('Geocode was not successful for the following reason: ' + status);
       }
-     
     });
-    
-   
   }
    
   //inputのvalueで検索して地図を表示
@@ -96,7 +86,6 @@ function initMap() {
     getAddress: function() {
       // ボタンに指定したid要素を取得
       var button = document.getElementById("map_button");
-       
       // ボタンが押された時の処理
       button.onclick = function() {
         // フォームに入力された住所情報を取得
@@ -113,13 +102,10 @@ function initMap() {
         codeAddress(address);
       }
     }
-   
   };
-  
- 
 })();
 getMap.getAddress();
-      
+  
       function markerEvent(i) {
         marker[i].addListener('click', function() { // マーカーをクリックしたとき
         infoWindow[i].open(map, marker[i]); // 吹き出しの表示

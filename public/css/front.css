@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+.btn-horizontal-border {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 12px 0 8px;
+  text-decoration: none;
+  color: #DEB887;
+  transition: 0.4s;
+}
+
+.btn-horizontal-border:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 4px;
+  top: 100%;
+  left: 0;
+  border-radius: 3px;
+  background: #FFC778;
+  transition: 0.2s;
+}
+
+.btn-horizontal-border:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 4px;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  background: #FFC778;
+  transition: 0.2s;
+}
+
+.btn-horizontal-border:hover:before {
+  top: calc(100% - 3px);
+}
+
+.btn-horizontal-border:hover:after {
+  top: 3px;
+}
+
+.genre_list {
+  padding: 5px;
+}
+
+.image_list {
+  width: 270px;
+  height: 250px;
+}
+
+.edit {
+  padding: 1px;
+}
+
+.url {
+  font-size: 17px;
+}
+
+.rounded {
+  border-width: 100px;
+}
+
+.genre_title {
+  /*線の種類（二重線）太さ 色*/
+  border-bottom: double 5px #FFC778;
+  font-size: 25px;
+  color: #DEB887;
+}
+
+.address {
+  color: red;
+}
+
+.text {
+  background-color: #EEEEEE;
+}
+
+.title {
+  display: inline-block;
+  color: #ffffff;
+  /* 文字の色 */
+  font-size: 36pt;
+  /* 文字のサイズ */
+  letter-spacing: 2px;
+  /* 文字間 */
+  text-shadow: 1px 1px 1px #003366, -1px 1px 1px #003366, 1px -1px 1px #003366, -1px -1px 1px #003366, 1px 0px 1px #003366, 0px 1px 1px #003366, -1px 0px 1px #003366, 0px -1px 1px #003366;
+  /* 文字の影 */
+}
+
+.container {
+  background-image: url(https://beiz.jp/images_P/japanese-paper/japanese-paper_00478.jpg);
+}
+
+body {
+  background-image: url(https://beiz.jp/images_T/paper/paper_00077.jpg);
+  background-size: cover;
+  font-family: "Comic Sans MS";
+}
+
+#content_wrap {
+  background: #fff repeat-y left top;
+  /*--Left drop shadow--*/
+  margin: 0 auto;
+  padding: 0;
+  min-width: 780px;
+  /*--Minimum Width--*/
+  max-width: 1200px;
+  /*--Maximum Width--*/
+}
+
+.content {
+  background: repeat-y right top;
+  /*--Right drop shadow--*/
+  margin: 0;
+  padding: 25px 40px;
+  /*--Padding inside of the main content--*/
+  overflow: hidden;
+  font-size: 1.2em;
+}
+
+.border {
+  border: none;
+  height: 3px;
+  color: #339933;
+  background-color: #339933;
+  /* Modern Browsers */
+}
+
+.border-image {
+  padding: 2px;
+}
+
+.name_url {
+  color: #996600;
+}
+
+.card_border {
+  border-width: 3px;
+}
+
