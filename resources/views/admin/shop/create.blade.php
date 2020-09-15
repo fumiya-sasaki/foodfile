@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqD8_cvwnofDfl9QhwuKA-vjdL-iUFysw&callback"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&callback"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
     </body>
