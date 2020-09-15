@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="content_wrap">
-	        <div class="content">
+            <div class="content">
                 <div class="container">
                     <div class="col text-center">
                         <h1 class="col-md-5 mt-5 mx-auto title">Add Shop</h1>
@@ -75,9 +75,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&callback"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="{{ secure_asset('js/create.js') }}" defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&callback"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="{{ secure_asset('js/create.js') }}" defer></script>
     </body>
 </html>
