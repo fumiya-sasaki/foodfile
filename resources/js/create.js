@@ -24,8 +24,8 @@ button.addEventListener("click", function() {
         image.value = res.data['image'];
         image.innerHTML = "";
          $('#image_open').html('<img src=' + res.data['image'] + ' width="457" height="309" >');
-        console.log(res.data)
-    })
+        console.log(res.data);
+    });
 });
 
  $(function(){

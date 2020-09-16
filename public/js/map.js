@@ -37138,7 +37138,6 @@ function initMap() {
   });
 }
 
-;
 var markerD = []; // DB情報の取得
 
 $(function () {

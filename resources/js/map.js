@@ -9,7 +9,7 @@ function initMap() {
               center: centerp,
               zoom: 10,
               });
-        };
+        }
       var markerD = [];
       // DB情報の取得
       $(function(){
