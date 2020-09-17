@@ -9,7 +9,7 @@ require('./bootstrap');
 
 import axios from 'axios';
 let button = document.getElementById("button");
-$(document).on("click", "#button", function() {
+$('#button').on('click', function() {
     let url = document.getElementById("url").value;
     axios.get('/admin/shop/api',{
         params: {
