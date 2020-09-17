@@ -37127,8 +37127,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
-var button = document.getElementById("button");
-button.addEventListener("click", function () {
+$('#button').on('click', function () {
   var url = document.getElementById("url").value;
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/shop/api', {
     params: {

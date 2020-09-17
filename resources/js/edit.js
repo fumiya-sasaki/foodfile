@@ -1,8 +1,7 @@
 require('./bootstrap');
 
 import axios from 'axios';
-let button = document.getElementById("button");
-button.addEventListener("click", function() {
+$('#button').on('click', function() {
     let url = document.getElementById("url").value;
     axios.get('/admin/shop/api',{
         params: {

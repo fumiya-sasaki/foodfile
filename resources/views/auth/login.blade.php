@@ -66,9 +66,54 @@
                     </div>
                 </div>
             </div>
-            <h1 class="col-md-5 mx-auto">
+            <h1 class="col-md-5 mx-auto pt-4 pb-4">
                 [food file]の使い方！
             </h1>
+            <div class="col-md-10 mx-auto">
+              
+                    <h3 class="pt-2 pb-2">
+                        
+                        メモしたいお店の情報が乗ってるページを検索してURLをコピー！
+                    </h3>
+                 
+                    
+                    
+                    <img src="https://i.gyazo.com/02490d6375ead33eb90419a001efa0b1.png"></img>
+                   <h3 class="pt-3 pb-3">
+                       
+                        URLを貼り付けてボタンを押したらお店の名前と画像を自動入力されます！<br>
+                        もちろん自分好みに入力してもOK!
+                   </h3>
+                   
+                    <img src="https://i.gyazo.com/ec3f747c07d29e304b2b320348d708f6.png"></img>
+                   <h3 class="pt-3 pb-3">
+                       
+                        ジャンル分けできるようにジャンルを入力
+                        、たったこれだけで登録準備完了！
+                   </h3>
+                    
+                    <img src="https://i.gyazo.com/8ef6935501116dd77a656f3b0c43279d.png"></img>
+                    <h3 class="pt-3 pb-3">
+                        
+                        MAPにピンを立てたい時は住所を入れてボタンを押すとMAPナンバーが自動で取得されます！これだけでOK!
+                    </h3>
+                   
+                    <img src="https://i.gyazo.com/1cd813ac8c18448e54fa50cfe779d703.png"></img>
+                   <h3 class="pt-3 pb-3">
+                       
+                        見たいお店もジャンルリストから楽々検索！
+                        登録したURLもすぐに開けるので気になる情報もすぐにGET!
+                   </h3>
+                   
+                    <img src="https://i.gyazo.com/6b9b9e3200d784e618fc8eeea0e897da.png"></img>
+                    <h2 class="pt-3 pb-3">
+                        
+                        未登録の方は右上の新規登録からユーザー登録をしてください！
+                    </h2>
+                    
+               
+            </div>
+            
         </div>
     </div>
 </div>
