@@ -19,34 +19,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<style>
-    .container 
-    {
-       background-image: url(https://beiz.jp/images_P/japanese-paper/japanese-paper_00478.jpg);
-    }
-body 
-    {
-        background-image: url(https://beiz.jp/images_T/paper/paper_00077.jpg);
-        background-size: cover;
-        font-family:'Comic Sans MS';
-    }
-#content_wrap 
-    {
-    	background: #fff  repeat-y left top; /*--Left drop shadow--*/
-    	margin: 0 auto;
-    	padding: 0;
-    	min-width: 780px; /*--Minimum Width--*/
-    	max-width: 1200px; /*--Maximum Width--*/
-    }
-.content 
-    {
-    	background:  repeat-y right top; /*--Right drop shadow--*/
-    	margin: 0;
-    	padding: 25px 40px; /*--Padding inside of the main content--*/
-    	overflow: hidden;
-    	font-size: 1.2em;
-    }
-</style>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">

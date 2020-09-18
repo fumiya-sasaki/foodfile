@@ -5,7 +5,7 @@
     <div class="content">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-8 pt-3">
                     <div class="card">
                         <div class="card-header">{{ __('Login') }}</div>
                         <div class="card-body">
@@ -66,6 +66,10 @@
                     </div>
                 </div>
             </div>
+            <div class="row pt-3">
+                
+            <div class="border_text">
+                
             <h1 class="col-md-5 mx-auto pt-4 pb-4">
                 [food file]の使い方！
             </h1>
@@ -111,6 +115,8 @@
                         未登録の方は右上の新規登録からユーザー登録をしてください！
                     </h2>
                     
+            </div>
+            </div>
                
             </div>
             
