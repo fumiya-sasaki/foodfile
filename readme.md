@@ -19,9 +19,9 @@ URLから必要な情報を取得し、簡単に登録できます。
 # Note
 登録画面でジャンルを記入するとジャンルごとに検索できます。
 住所を入力してMAPナンバーを取得して登録するとMAPにピンが立ちます。
-#Author
+# Author
 fumiya sasaki
-#License
+# License
 Copyright (c) [15/09/2020] [fumiya sasaki]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
