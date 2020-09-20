@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/map.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/map.css') }}" rel="stylesheet">
         <title>food file</title>
     </head>
     <body>
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <script src="{{ secure_asset('js/map.js') }}" defer></script>
+        <script src="{{ asset('js/map.js') }}" defer></script>
         <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}"
                 type="text/javascript" async defer ></script>
         <script src="https://code.jquery.com/jquery-2.1.1.js" integrity="sha256-FA/0OOqu3gRvHOuidXnRbcmAWVcJORhz+pv3TX2+U6w=" crossorigin="anonymous"></script>

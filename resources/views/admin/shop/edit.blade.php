@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>foodfile</title>
-        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/edit.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/edit.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="content_wrap">
@@ -88,6 +88,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&callback"></script>
-        <script src="{{ secure_asset('js/edit.js') }}" defer></script>
+        <script src="{{ asset('js/edit.js') }}" defer></script>
     </body>
 </html>    
