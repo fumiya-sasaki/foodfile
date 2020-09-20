@@ -15,6 +15,9 @@ URLから必要な情報を取得し、簡単に登録できます。
 # Requirements
 - PHP 7.2.33
 - Laravel Framework 5.8.38
+- macOS Catalina 10.15.2
+- mysql  Ver 14.14 Distrib 5.7.30
+
 
 # Note
 登録画面でジャンルを記入するとジャンルごとに検索できます。

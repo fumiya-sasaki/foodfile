@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/create.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/create.css') }}" rel="stylesheet">
         <title>foodfile</title>
     </head>
     <body>
@@ -77,6 +77,6 @@
         </div>
         <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&callback"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="{{ secure_asset('js/create.js') }}" defer></script>
+        <script src="{{ asset('js/create.js') }}" defer></script>
     </body>
 </html>
