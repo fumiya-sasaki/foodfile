@@ -131,4 +131,8 @@ class Shopscontroller extends Controller
         $user = Auth::user();   #ログインユーザー情報を取得します。
         return view('hello', ['user' => $user]);
     }
+    
+    public function test2() {
+        return view('test');
+    }
 }

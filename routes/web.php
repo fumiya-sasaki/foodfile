@@ -21,7 +21,7 @@ Route::group(['prefix' =>'admin',  'middleware' => 'auth'], function() {
     Route::get('shop/api', 'Admin\Shopscontroller@api');
 });
     Route::get('/', 'Admin\Shopscontroller@index')->middleware('auth');
-
+    Route::get('test', 'Admin\Shopscontroller@test2');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

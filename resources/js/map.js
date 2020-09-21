@@ -106,9 +106,24 @@ function initMap() {
 })();
 getMap.getAddress();
   
-      function markerEvent(i) {
-        marker[i].addListener('click', function() { // マーカーをクリックしたとき
-        infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+      
+      function markerEvent(mark) {
+        marker[mark].addListener('click', function() { // マーカーをクリックしたとき
+        infoWindow[mark].open(map, marker[mark]); // 吹き出しの表示
+        var flag = marker[mark];
         });
+        console.log(flag);
+     marker[mark].addListener('mouseover', function() { // マーカーをクリックしたとき
+        infoWindow[mark].open(map, marker[mark]); // 吹き出しの表示
+     });
+     if (flag ==! null) {
+       
+      marker[mark].addListener('mouseout', function() { // マーカーをクリックしたとき
+        infoWindow[mark].close(); // 吹き出しの表示
+     });
+     }
+     
       }
+      
+      
       
