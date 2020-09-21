@@ -14,7 +14,7 @@
                 <div class="container">
                     <div class="col-12 clearfix text-center">
                         <h1 class="col-md-5 mt-5 mx-auto title">Shop Edit</h1>
-                        <p>food file</p>
+                        <p class="float-right">food file</p>
                     </div>
                         <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-success">一覧へ戻る</a>
                         <hr class="border border-primary">
