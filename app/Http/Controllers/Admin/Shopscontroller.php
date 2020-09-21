@@ -120,7 +120,7 @@ class Shopscontroller extends Controller
     {
        
         $user = Auth::user()->id;
-          $map = Shop::where('user_id', $user)->select('name','latitude','longitube')->get();
+          $map = Shop::where('user_id', $user)->select('name','latitude','longitube','url')->get();
          
           
     

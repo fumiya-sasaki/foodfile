@@ -37193,6 +37193,11 @@ function setMarker(markerData) {
 
     });
     markerEvent(i);
+    google.maps.event.addListener(marker[i], 'click', function (url) {
+      return function () {
+        open(url, "_blank");
+      };
+    }(markerData[i]['url']));
   }
 }
 
@@ -37206,7 +37211,7 @@ var getMap = function () {
     }, function (results, status) {
       // ジオコーディングが成功した場合
       if (status == google.maps.GeocoderStatus.OK) {
-        // 変換した緯度・経度情報を地図の中心に表示
+        // 変換した緯度・経度情報を地��の中心に表示
         map.setCenter(results[0].geometry.location); // ジオコーディングが成功しなかった場合
       } else {
         console.log('Geocode was not successful for the following reason: ' + status);
@@ -37239,26 +37244,17 @@ var getMap = function () {
 }();
 
 getMap.getAddress();
+var flag;
 
-function markerEvent(mark) {
-  marker[mark].addListener('click', function () {
+function markerEvent(i) {
+  marker[i].addListener('mouseover', function () {
     // マーカーをクリックしたとき
-    infoWindow[mark].open(map, marker[mark]); // 吹き出しの表示
-
-    var flag = marker[mark];
+    infoWindow[i].open(map, marker[i]); // 吹き出しの表示
   });
-  console.log(flag);
-  marker[mark].addListener('mouseover', function () {
+  marker[i].addListener('mouseout', function () {
     // マーカーをクリックしたとき
-    infoWindow[mark].open(map, marker[mark]); // 吹き出しの表示
+    infoWindow[i].close();
   });
-
-  if (flag == !null) {
-    marker[mark].addListener('mouseout', function () {
-      // マーカーをクリックしたとき
-      infoWindow[mark].close(); // 吹き出しの表示
-    });
-  }
 }
 
 /***/ }),
