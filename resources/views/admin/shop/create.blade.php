@@ -12,8 +12,9 @@
         <div id="content_wrap">
             <div class="content">
                 <div class="container">
-                    <div class="col text-center">
+                    <div class="col-12 clearfix text-center">
                         <h1 class="col-md-5 mt-5 mx-auto title">Add Shop</h1>
+                        <p>food file</p>
                     </div>
                     <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-success">一覧へ戻る</a>
                     <hr class="border">

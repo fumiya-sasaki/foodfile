@@ -33,8 +33,9 @@
                             </li>
                         @endguest
                     </ul>
-                    <div class="col text-center">
+                    <div class="col-12 clearfix text-center">
                         <h1 class="title" >Yours List</h1>
+                        <p>food file</p>
                     </div>
                     <hr class="border">
                     <div class="row">
