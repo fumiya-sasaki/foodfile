@@ -19,6 +19,7 @@
                     <div class="row">
                         <div class="col-md-9 mx-auto">
                             <a href="{{ action('Admin\Shopscontroller@index') }}" role="button" class="btn btn-success btn_return mb-3">一覧へ戻る</a>
+                            <p>ピンを押すと登録したURLへ！</p>
                             <div class="gmap">
                                 <div id="target" ></div>
                             </div>

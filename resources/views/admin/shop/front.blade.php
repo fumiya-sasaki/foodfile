@@ -34,7 +34,7 @@
                         @endguest
                     </ul>
                     <div class="col-12 clearfix text-center">
-                        <h1 class="title" >Yours List</h1>
+                        <h1 class="col-md-5 mx-auto mt-2 title" >Yours List</h1>
                         <p class="float-right">food file</p>
                     </div>
                     <hr class="border">
